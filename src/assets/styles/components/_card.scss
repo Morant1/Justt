@@ -1,0 +1,32 @@
+.card {
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0 16px 0;
+        img {
+            max-width: 354px;
+            margin-right: 50px;
+            max-height: 361px;
+            border: 5px solid #4310ae;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto;
+            background: linear-gradient(241.25deg, #f9f7ff 4.4%, rgba(255, 255, 255, 0.53) 119.94%);
+            box-shadow: -10px 10px 20px rgb(67 16 174 / 12%);
+            backdrop-filter: blur(26px);
+            border-radius: 10.2556px;
+
+            .detail {
+                display: flex;
+                flex-direction: column;
+                padding: 10px 100px 10px 10px;
+            }
+        }
+    }
+}
