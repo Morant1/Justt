@@ -1,31 +1,67 @@
 .card {
+    // padding: 42px 26px;
     .box {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 16px 0 16px 0;
+        justify-content: center;
+        height:361px;
         img {
             max-width: 354px;
             margin-right: 50px;
-            max-height: 361px;
+            height: 100%;
             border: 5px solid #4310ae;
             box-sizing: border-box;
             border-radius: 20px;
         }
 
-        .details {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            grid-template-rows: auto auto;
-            background: linear-gradient(241.25deg, #f9f7ff 4.4%, rgba(255, 255, 255, 0.53) 119.94%);
+        .details-container {
+            background: linear-gradient(241.25deg, #f9f7ff 104.4%, rgba(255, 255, 255, 0.53) 119.94%);
             box-shadow: -10px 10px 20px rgb(67 16 174 / 12%);
             backdrop-filter: blur(26px);
             border-radius: 10.2556px;
+            padding: 35px 50px;
+            width:  860px;
+            height: 100%;
+            p {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: #4310ae;
+                padding-bottom: 50px;
+                font-family: Roboto,sans-serif;
+            }
+            .details {
+                display: grid;
+                grid-template-columns: auto auto auto;
+                grid-template-rows: auto auto;
 
-            .detail {
-                display: flex;
-                flex-direction: column;
-                padding: 10px 100px 10px 10px;
+                .detail {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px 100px 50px 10px;
+
+                    h1 {
+                        font-family: Roboto, sans-serif;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #000000;
+                        opacity: 0.5;
+                        margin-bottom: 12px;
+                    }
+                    h2 {
+                        font-family: Roboto, sans-serif;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 20px;
+                        line-height: 23px;
+                        color: #200062;
+                    }
+                }
             }
         }
     }

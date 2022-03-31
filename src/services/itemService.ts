@@ -2,82 +2,51 @@ import axios from 'axios';
 import { loadFromStorage, saveToStorage } from './storageService'
 import { Item } from '../models/item.model';
 
-
 const KEY_ITEMS = 'ITEMS';
+const BASE_URL = 'https://rickandmortyapi.com/api/character/';
+
 let gItems: Item[] = loadFromStorage(KEY_ITEMS) || null;
 
+export const loadItems = async (): Promise<Item[]> => {
+    try {
+        if (!gItems) {
+            let res = await axios.get(`${BASE_URL}?count=20`)
+            const gItems = res.data.results;
+            if (gItems && gItems.length) {
+                gItems.forEach((curr: Item) => {
+                    curr.originName = curr.origin.name;
+                })
+            }
+            saveToStorage(KEY_ITEMS, gItems);
+        }
 
+        return gItems
 
-const BASE_URL = 'https://rickandmortyapi.com/api/character/?count=20'
-
-
-export const loadItems = async () : Promise<Item[]> => {
-    if (!gItems) {
-        let res = await axios.get(`${BASE_URL}`)
-        gItems = res.data.results;
-        saveToStorage(KEY_ITEMS, gItems);
+    } catch (e: any) {
+        console.error("error with fetching data:", e);
+        return [];
     }
 
-    return gItems
 }
 
-// export const getById = (studentId: string) : Promise<t> | any => {
-//     const student = gItems.find(student => student._id === studentId);
-//     return Promise.resolve(student);
-// }
+export const browseInput = async (str: string): Promise<Item[]> => {
+    try {
+        let result = await (await axios.get(`${BASE_URL}?name=${str}`)).data.results;
+        return result;
+    } catch (e: any) {
+        console.error("error with fetching data:", e);
+        return [];
+    }
+}
 
-// export const remove = () : void => {
-//     gItems = gItems.filter(student => !student.isSelected)
-//     if (!gItems.length) saveToStorage(KEY_ITEMS, null);
-//     else saveToStorage(KEY_ITEMS, gItems);
-    
-// }
+export const searchCharacterInput = async (str: string): Promise<Item | null> => {
+    try {
+        let result = await (await axios.get(`${BASE_URL}${str}`)).data;
+        result.originName = result.origin.name;
+        return result;
+    } catch (e: any) {
+        console.error("error with fetching data:", e);
+        return null;
+    }
 
-// export const save = (currStudent: Student) : Promise<Student> => {
-//     const idx = gItems.findIndex(student => student._id === currStudent._id)
-//     gItems.splice(idx, 1, currStudent);
-//     saveToStorage(KEY_ITEMS, gItems);
-
-//     return Promise.resolve(currStudent);
-// }
-
-// export const getPrevNextId = (currStudent: Student) => {
-
-//     const currIdx = gItems.findIndex(student => student._id === currStudent._id)
-//     const nextStudent = gItems[currIdx + 1] || gItems[0]
-//     const prevStudent = gItems[currIdx - 1] || gItems[gItems.length - 1]
-
-//     return Promise.resolve({
-//         prevId: prevStudent._id,
-//         nextId: nextStudent._id
-//     })
-// }
-
-// export const getPageData = () : Promise<PageData> => {
-//     gPageData = loadFromStorage(KEY_PAGE) || { chosenBtn: 0, pageIdx: 0 }
-//     return Promise.resolve(gPageData)
-// }
-
-// export const setPageData = (chosenBtn:any, pageIdx:any) : void => {
-//     gPageData = { chosenBtn, pageIdx };
-//     saveToStorage(KEY_PAGE, gPageData)
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

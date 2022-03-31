@@ -26,7 +26,7 @@ export const headCells : {
     label: "Status"
   },
   {
-    id: "origin",
+    id: "originName",
     disablePadding: false,
     label: "Origin"
   },
