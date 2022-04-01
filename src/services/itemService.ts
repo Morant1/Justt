@@ -11,7 +11,7 @@ export const loadItems = async (): Promise<Item[]> => {
     try {
         if (!gItems) {
             let res = await axios.get(`${BASE_URL}?count=20`)
-            const gItems = res.data.results;
+            gItems = res.data.results;
             if (gItems && gItems.length) {
                 gItems.forEach((curr: Item) => {
                     curr.originName = curr.origin.name;
@@ -32,6 +32,11 @@ export const loadItems = async (): Promise<Item[]> => {
 export const browseInput = async (str: string): Promise<Item[]> => {
     try {
         let result = await (await axios.get(`${BASE_URL}?name=${str}`)).data.results;
+        if (result && result.length) {
+            result.forEach((curr: Item) => {
+                curr.originName = curr.origin.name;
+            })
+        }
         return result;
     } catch (e: any) {
         console.error("error with fetching data:", e);

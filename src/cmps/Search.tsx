@@ -2,6 +2,7 @@ import { Button, InputAdornment, MuiThemeProvider, TextField } from "@material-u
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { theme } from "../helpers/Theme";
+import { ReactComponent as SearchIcon } from "../assets/img/search.svg";
 
 
 type Props = {
@@ -18,7 +19,7 @@ export const Search: React.FC<Props> = ({ isBrowse, handleSearchChange, searchVa
         const currValue = e.currentTarget.value;
         setValue(currValue);
 
-        if(!currValue) {
+        if(!currValue && isBrowse) {
             handleSearchChange(currValue)
         }
     }
@@ -34,7 +35,7 @@ export const Search: React.FC<Props> = ({ isBrowse, handleSearchChange, searchVa
             <div className="search">
                 <div className="bar">
                     <TextField color="primary" InputProps={{
-                        endAdornment: <InputAdornment position="end"><i className="fa fa-search"></i></InputAdornment>
+                        endAdornment: <InputAdornment position="end"><SearchIcon/></InputAdornment>
                     }} placeholder={placeholder} name="bio" onChange={handleChange} value={value} />
                 </div>
                 <Button className="search-btn" onClick={() => handleSearchChange(value)}>

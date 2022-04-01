@@ -1,6 +1,5 @@
 import React from "react";
 import { Item } from '../models/item.model'
-import Box from "@material-ui/core/Box";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
@@ -90,13 +89,6 @@ export const TableItem: React.FC<Props> = ({ items }) => {
                       onClick={createSortHandler(headCell.id)}
                     >
                       {headCell.label}
-                      {orderBy === headCell.id ? (
-                        <Box component="span" style={{ display: 'none' }}>
-                          {order === "desc"
-                            ? "sorted descending"
-                            : "sorted ascending"}
-                        </Box>
-                      ) : null}
                     </TableSortLabel>
                   </TableCell>
                 );

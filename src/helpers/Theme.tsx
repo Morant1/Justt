@@ -76,15 +76,11 @@ export const theme = createMuiTheme({
                 alignItems: 'center',
                 letterSpacing: '0.25px',
                 color: '#4310AE',
-                '&::placeholder' : {
+                '&::placeholder': {
                     fontWeight: 'normal',
-                    color:'#A2A2A2'
-                },
-                'i': {
-                    fontSize: '25px',
-                    color:'#333333'
+                    color: '#A2A2A2'
                 }
-            }
+            },
         },
         MuiIconButton: {
             root: {
@@ -102,7 +98,7 @@ export const theme = createMuiTheme({
                     color: '#05111A'
                 },
                 borderBottom: 'none',
-                textAlign:'center',
+                textAlign: 'center',
                 "&$head": {
                     fontStyle: 'normal',
                     fontWeight: 700,
@@ -116,6 +112,12 @@ export const theme = createMuiTheme({
         MuiTableHead: {
             root: {
                 backgroundColor: '#200062'
+            }
+        },
+        MuiTable:{
+            root: {
+                // display: 'block',
+                
             }
         },
         MuiSvgIcon: {

@@ -41,7 +41,7 @@ export default class Home extends React.Component<any, MyState> {
 
     handleChange = async (value: string) => {
         const { isBrowse } = this.state;
-        if(!value) {
+        if (!value) {
             this.load();
             return;
         }
@@ -50,7 +50,7 @@ export default class Home extends React.Component<any, MyState> {
             this.setState({ items, displayMessage: items && items.length ? "" : "No Items Found" });
         }
         else {
-            const item = await searchCharacterInput(value);
+            const item = Number.isInteger(Number(value)) ?  await searchCharacterInput(value) : null;
             this.setState({ item, displayMessage: item ? "" : "No Character Found" });
         }
 
@@ -58,7 +58,7 @@ export default class Home extends React.Component<any, MyState> {
 
     toggleBtn = (value: boolean) => {
         this.setState({ isBrowse: value })
-        this.setState({ searchValue: "" })
+        this.setState({ searchValue: "" ,displayMessage:""})
     }
 
     render() {
@@ -69,18 +69,37 @@ export default class Home extends React.Component<any, MyState> {
 
         return (
             <div className="item-app">
-                <button onClick={() => toggleBtn(true)}>Browse</button>
-                <button onClick={() => toggleBtn(false)}>Pick a character</button>
-                <Search isBrowse={isBrowse} searchValue={searchValue} handleSearchChange={handleChange} />
-                <MuiThemeProvider theme={theme}>
-                    <TableContainer component={Paper}>
-                        {isBrowse ?
-                            items && items.length ? <TableItem items={items} /> : <NoFoundPage displayMessage={displayMessage} />
-                            :
-                            item && Object.keys(item).length ? <Card row={item} open={true} /> : <NoFoundPage displayMessage={displayMessage} />
-                        }
-                    </TableContainer>
-                </MuiThemeProvider>
+
+                <div className="img-box" style={{
+                    backgroundImage:
+                        `url(${require('../assets/img/wallpaper.png').default})`
+                }}></div>
+
+                <div className="img-container">
+                    <img alt="justt" src={require("../assets/img/justt.png").default} />
+                </div>
+
+                <section>
+                    <div className="btn-container">
+                        <button className={isBrowse ? "active" : ""} onClick={() => toggleBtn(true)}>Browse</button>
+                        <button className={!isBrowse ? "active" : ""} onClick={() => toggleBtn(false)}>Pick a character</button>
+                    </div>
+
+
+                    <div className="table-container">
+                        <Search isBrowse={isBrowse} searchValue={searchValue} handleSearchChange={handleChange} />
+                        <MuiThemeProvider theme={theme}>
+                            <TableContainer component={Paper}>
+                                {isBrowse ?
+                                    items && items.length ? <TableItem items={items} /> : <NoFoundPage displayMessage={displayMessage} />
+                                    :
+                                    item && Object.keys(item).length ? <Card row={item} open={true} /> : <NoFoundPage displayMessage={displayMessage} />
+                                }
+                            </TableContainer>
+                        </MuiThemeProvider>
+                    </div>
+                </section>
+
             </div>
         )
     }
