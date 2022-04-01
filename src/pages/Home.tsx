@@ -1,7 +1,7 @@
 import React from 'react'
 import { loadItems, browseInput, searchCharacterInput } from '../services/itemService'
 import { Item } from '../models/item.model'
-import { MuiThemeProvider, Paper, TableContainer } from '@material-ui/core'
+import { MuiThemeProvider, Paper, Table, TableBody, TableContainer } from '@material-ui/core'
 import { TableItem } from '../cmps/TableItem'
 import { Search } from '../cmps/Search'
 import { theme } from '../helpers/Theme'
@@ -50,15 +50,19 @@ export default class Home extends React.Component<any, MyState> {
             this.setState({ items, displayMessage: items && items.length ? "" : "No Items Found" });
         }
         else {
-            const item = Number.isInteger(Number(value)) ?  await searchCharacterInput(value) : null;
+            const item = Number.isInteger(Number(value)) ? await searchCharacterInput(value) : null;
             this.setState({ item, displayMessage: item ? "" : "No Character Found" });
         }
 
     }
 
     toggleBtn = (value: boolean) => {
-        this.setState({ isBrowse: value })
-        this.setState({ searchValue: "" ,displayMessage:""})
+        const { isBrowse } = this.state;
+        this.setState({ isBrowse: value, searchValue: "", displayMessage: "" }, () => {
+            if (isBrowse) this.load();
+            else this.setState({ item: null })
+        })
+
     }
 
     render() {
@@ -93,7 +97,9 @@ export default class Home extends React.Component<any, MyState> {
                                 {isBrowse ?
                                     items && items.length ? <TableItem items={items} /> : <NoFoundPage displayMessage={displayMessage} />
                                     :
-                                    item && Object.keys(item).length ? <Card row={item} open={true} /> : <NoFoundPage displayMessage={displayMessage} />
+                                    item && Object.keys(item).length ?
+                                        <Table><TableBody><Card row={item} open={true} /></TableBody></Table>
+                                        : <NoFoundPage displayMessage={displayMessage} />
                                 }
                             </TableContainer>
                         </MuiThemeProvider>

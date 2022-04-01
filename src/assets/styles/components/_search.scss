@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 0;
+    padding: 30px;
     background: #efeff4;
 
     .bar {
@@ -10,13 +10,28 @@
         border: 1px solid #dddddd;
         box-sizing: border-box;
         border-radius: 4px;
-        width: 480px;
+        max-width: 480px;
+        width:80%;
         padding: 13px 17px 13px 27px;
         height: 46px;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-right: 20px;
+    }
+
+}
+
+
+@media screen and (max-width: 550px) {
+    .search {
+        flex-direction: column;
+
+        .bar {
+            width:90%;
+            margin-bottom: 10px;
+            margin-right: 0px;
+        }
     }
 
 }

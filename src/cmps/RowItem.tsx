@@ -36,9 +36,7 @@ export const RowItem: React.FC<Props> = ({ row, isEven }) => {
           </IconButton>
         </TableCell>
       </TableRow>
-      <TableRow>
         <Card row={row} open={open} />
-      </TableRow>
     </React.Fragment>
   );
 }

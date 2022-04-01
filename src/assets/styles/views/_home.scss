@@ -4,6 +4,7 @@
         padding: 0 10% 100px 10%;
         
     }
+
     .img-box{
         height: 217px;
         background-position: center;
@@ -59,4 +60,16 @@
             }
         }
     }
+}
+
+
+@media screen and (max-width: 550px) {
+    .item-app {
+
+        .table-container{
+            padding: 20px;
+            
+        }
+    }
+
 }

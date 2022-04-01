@@ -7,19 +7,15 @@ export const theme = createMuiTheme({
         },
     },
     overrides: {
-        MuiPaper: {
-            root: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-            }
-        },
         MuiCollapse: {
             wrapper: {
                 minHeight: '500px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                '@media (max-width: 800px)': {
+                    minHeight: '400px'
+                }
             }
         },
         MuiFormControl: {
@@ -114,12 +110,6 @@ export const theme = createMuiTheme({
                 backgroundColor: '#200062'
             }
         },
-        MuiTable:{
-            root: {
-                // display: 'block',
-                
-            }
-        },
         MuiSvgIcon: {
             root: {
                 '&:hover': {
@@ -135,7 +125,7 @@ export const theme = createMuiTheme({
                 "&$active": {
                     color: '#6743b1',
                     '&& $icon': {
-                        color: '#6743b1'
+                        color: '#baedf0'
                     },
                 },
 
