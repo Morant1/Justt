@@ -97,7 +97,7 @@ export const TableItem: React.FC<Props> = ({ items }) => {
           </TableHead>
           <TableBody>
             {stableSort(items, getComparator(order, orderBy)).map((item: Item, index: number) => (
-              <RowItem key={item.id} row={item} isEven={index % 2 === 0} />
+              <RowItem key={item.id} row={item} isEven={index % 2 !== 0} />
             ))}
           </TableBody>
         </Table>
