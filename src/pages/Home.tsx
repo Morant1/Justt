@@ -68,7 +68,10 @@ export default class Home extends React.Component<any, MyState> {
     render() {
         const { items, isBrowse, searchValue, item, displayMessage } = this.state;
         const { toggleBtn, handleChange } = this;
-        if (!items) return <div>Loading...</div>
+        if (!items) return (
+            <div className="loader">
+                <img className="loader" alt="gif" src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif" />
+            </div>)
 
 
         return (

@@ -9,7 +9,6 @@ export const theme = createMuiTheme({
     overrides: {
         MuiCollapse: {
             wrapper: {
-                minHeight: '500px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
